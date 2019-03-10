@@ -10,13 +10,23 @@ bool randomBool()
   return rand() % 2 == 1;
 }
 
-int main()
+void show(int numberOfDrops, int trays[])
 {
-    int trays [10] = {0,0,0,0,0,0,0,0,0,0};
-    int bullets = 250;
-    int numberOfDrops = 10 - 1;
-    double middle = 10 / 2;
+    for (int display = 0; display < numberOfDrops; display = display + 1)
+    {
+        int numberOfBullets = trays[display];
 
+        for(int bullet=0; bullet < numberOfBullets; bullet = bullet + 1)
+        {
+            printf("0");
+        }
+        printf("\n");
+    }
+}
+
+void dropBullets(int numberOfDrops, int bullets, int trays[])
+{
+    double middle = 5;
     for(int bullet = 0; bullet < bullets; bullet = bullet + 1)
     {
         double position = 0;
@@ -35,17 +45,15 @@ int main()
         int trayNumber = floor(position + middle);
         trays[trayNumber] = trays[trayNumber] + 1;
     }
+}
 
-    for (int display = 0; display < numberOfDrops; display = display + 1)
-    {
-        int numberOfBullets = trays[display];
+int main()
+{
+    int trays [10] = {0,0,0,0,0,0,0,0,0,0};
+    int bullets = 250;
+    int numberOfDrops = 10 - 1;
 
-        for(int bullet=0; bullet < numberOfBullets; bullet = bullet + 1)
-        {
-            printf("0");
-        }
-        printf("\n");
-    }
-
+    dropBullets(numberOfDrops, bullets, trays);
+    show(numberOfDrops, trays);
     return 0;
 }
